@@ -1,0 +1,13 @@
+{
+  "name": "lance",
+  "version": "1.0.0",
+  "description": "Custom Wordpress theme for Lance Edmands",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedmands/lanceedmands.git"
+  },
+  "author": "Preston Edmands",
+  "license": "MIT",
+  "homepage": "https://github.com/pedmands/lanceedmands#readme"
+}
