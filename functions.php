@@ -87,9 +87,9 @@ add_action( 'after_setup_theme', 'lance_content_width', 0 );
  */
 function lance_widgets_init() {
 	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'lance' ),
+		'name'          => esc_html__( 'Social Media', 'lance' ),
 		'id'            => 'sidebar-1',
-		'description'   => esc_html__( 'Add widgets here.', 'lance' ),
+		'description'   => esc_html__( 'Add media services here.', 'lance' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h2 class="widget-title">',
@@ -98,11 +98,27 @@ function lance_widgets_init() {
 }
 add_action( 'widgets_init', 'lance_widgets_init' );
 
+// Custom Image Thumbnail Size
+add_image_size('project-thumb', 310, 190, true);
+
 /**
  * Enqueue scripts and styles.
  */
 function lance_scripts() {
 	wp_enqueue_style( 'lance-style', get_stylesheet_uri() );
+
+	wp_enqueue_style('lance-new-styles', get_stylesheet_directory_uri() . '/css/style.css');
+
+
+	wp_enqueue_style('lance-fontawesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
+
+	wp_enqueue_script('jQuery', 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js');
+
+	wp_enqueue_script( 'lance-custom-script', get_template_directory_uri() . '/js/lancescript.js', array('jQuery'), '20161001', true );
+
+	wp_enqueue_script( 'lance-masonry', get_template_directory_uri() . '/js/masonry.min.js', array('jQuery'), '20161002', true );
+
+	wp_enqueue_script( 'lance-masonry-settings', get_template_directory_uri() . '/js/masonry-settings.js', array('jQuery'), '20161002', true );
 
 	wp_enqueue_script( 'lance-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 

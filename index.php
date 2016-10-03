@@ -17,36 +17,28 @@ get_header(); ?>
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 
-		<?php
-		if ( have_posts() ) :
+<?php 
+	$projects = array(
+	'post_type' => 'projects',
+	'orderby' => 'rand'
+	);
+	$project_tiles = new WP_Query($projects);?>
 
-			if ( is_home() && ! is_front_page() ) : ?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
+			
 
-			<?php
-			endif;
-
-			/* Start the Loop */
-			while ( have_posts() ) : the_post();
-
-				/*
-				 * Include the Post-Format-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_format() );
-
-			endwhile;
-
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif; ?>
+	<div id="projects">
+	<?php while ( $project_tiles->have_posts() ) : $project_tiles->the_post();
+	    echo '<div class="project hvr-float">';
+	    echo '<a class="" href="' . get_permalink() . '" title="Learn more about ' . get_the_title() . '">';
+	    the_post_thumbnail('project-thumb');
+	    echo '<div class="project-caption">';
+	    echo '<h1 class="project-title">' . get_the_title() . '</h1>';
+	    echo get_the_term_list($post->ID, 'clients', '<h1 class="project-client">', '</h1><h1 class="project-client">', '</h1>' );
+	    echo '</a>';
+	    echo '</div>';
+	    echo '</div>';
+	endwhile; ?>
+</div>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->

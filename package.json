@@ -9,5 +9,9 @@
   },
   "author": "Preston Edmands",
   "license": "MIT",
-  "homepage": "https://github.com/pedmands/lanceedmands#readme"
+  "homepage": "https://github.com/pedmands/lanceedmands#readme",
+  "devDependencies": {
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0"
+  }
 }
