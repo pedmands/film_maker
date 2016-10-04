@@ -5,7 +5,7 @@ $('#projects').masonry({
   // options
   itemSelector: '.project',
   columnWidth: '.project',
-  gutter: 0,
+  gutter: 25,
   isFitWidth: true,
   isAnimated: true
 });

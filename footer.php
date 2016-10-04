@@ -14,12 +14,9 @@
 	</div><!-- #content -->
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'lance' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'lance' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'lance' ), 'lance', '<a href="http://underscores.me/" rel="designer">Preston Edmands</a>' ); ?>
-		</div><!-- .site-info -->
+	Designed and developed by <a href="http://www.press10.me" alt="Preston Edmands, designer">Preston Edmands</a>
 	</footer><!-- #colophon -->
+
 </div><!-- #page -->
 
 <?php wp_footer(); ?>

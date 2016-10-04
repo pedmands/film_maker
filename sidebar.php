@@ -1,17 +1,17 @@
 <?php
 /**
- * The sidebar containing the main widget area.
+ * The sidebar containing social media.
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
  * @package Lance
  */
 
-if ( ! is_active_sidebar( 'sidebar-1' ) ) {
+if ( ! is_active_sidebar( 'social-widgets' ) ) {
 	return;
 }
 ?>
 
 <aside id="secondary" class="social-media" role="complementary">
-	<?php dynamic_sidebar( 'sidebar-1' ); ?>
+	<?php wp_nav_menu( array( 'theme_location' => 'social-menu', 'container_class' => 'menu-social' ) ); ?>
 </aside><!-- #secondary -->

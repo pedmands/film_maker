@@ -86,20 +86,28 @@ add_action( 'after_setup_theme', 'lance_content_width', 0 );
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
 function lance_widgets_init() {
-	register_sidebar( array(
-		'name'          => esc_html__( 'Social Media', 'lance' ),
-		'id'            => 'sidebar-1',
-		'description'   => esc_html__( 'Add media services here.', 'lance' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
+	 register_sidebar( array(
+		'name'          => __( 'Social Widgets', 'lance' ),
+        'description'   => __( 'Drop your social media links here.', 'lance'),
+		'id'            => 'social-widgets',
+		'before_widget' => '<aside id="%1$s" class="social %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h1 class="social-title">',
+		'after_title'   => '</h1>',
 	) );
 }
 add_action( 'widgets_init', 'lance_widgets_init' );
 
+//** Social Menu
+function register_social_menu() {
+  register_nav_menu('social-menu',__( 'Social Media Menu' ));
+}
+add_action( 'init', 'register_social_menu' );
+
+
 // Custom Image Thumbnail Size
-add_image_size('project-thumb', 310, 190, true);
+add_image_size('project-thumb', 320, 190, true);
+add_image_size('billboard', 1010, 450, array( 'left', 'bottom' ));
 
 /**
  * Enqueue scripts and styles.
@@ -108,7 +116,6 @@ function lance_scripts() {
 	wp_enqueue_style( 'lance-style', get_stylesheet_uri() );
 
 	wp_enqueue_style('lance-new-styles', get_stylesheet_directory_uri() . '/css/style.css');
-
 
 	wp_enqueue_style('lance-fontawesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
 

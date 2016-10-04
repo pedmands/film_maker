@@ -1,6 +1,6 @@
 <?php
 /**
-* Plugin Name: Project Manager
+* Plugin Name: Project/Feature Manager
 * Description: A simple plugin to publish projects with the project name, client, agency, and role(s) performed.
 * Version: 0.1
 * Author: Preston Edmands
@@ -49,18 +49,54 @@ function custom_posttypes() {
         'show_in_menu'       => true,
         'menu_icon'          => 'dashicons-format-video',
         'query_var'          => true,
-        'rewrite'            => array( 'slug' => 'work' ),
+        'rewrite'            => array( 'slug' => 'project' ),
         'capability_type'    => 'post',
         'has_archive'        => true,
         'hierarchical'       => false,
         'menu_position'      => 5,
         'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
-        'taxonomies'			  => array('clients', 'agencies', 'roles')
+        'taxonomies'			  => array('clients', 'agencies', 'year','director','editor')
     );
 	register_post_type('Projects', $args );
+
+    $labels = array(
+        'name'               => 'Features',
+        'singular_name'      => 'Feature',
+        'menu_name'          => 'Features',
+        'name_admin_bar'     => 'Feature',
+        'add_new'            => 'Add New',
+        'add_new_item'       => 'Add New Feature',
+        'new_item'           => 'New Feature',
+        'edit_item'          => 'Edit Feature',
+        'view_item'          => 'View Feature',
+        'all_items'          => 'All Features',
+        'search_items'       => 'Search Features',
+        'parent_item_colon'  => 'Parent Features:',
+        'not_found'          => 'No Features found.',
+        'not_found_in_trash' => 'No Features found in Trash.',
+    );
+    
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'menu_icon'          => 'dashicons-video-alt',
+        'query_var'          => true,
+        'rewrite'            => array( 'slug' => 'feature' ),
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => 5,
+        'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
+        'taxonomies'              => array('year','length','director','editor','studios')
+    );
+    register_post_type('Features', $args );
 }
 
 add_action( 'init', 'custom_posttypes' );
+
 
 function my_rewrite_flush() {
     // First, we "add" the custom post type via the above written function.
@@ -79,7 +115,7 @@ register_activation_hook( __FILE__, 'my_rewrite_flush' );
 
 function custom_taxonomies() {
 
-	// Language(s) Used
+	// Client
     $labels = array(
         'name'              => 'Client',
         'singular_name'     => 'Client',
@@ -106,7 +142,7 @@ function custom_taxonomies() {
 	
 	register_taxonomy('clients', array('projects'), $args);
 
-	// Software
+	// Agency
 	$labels = array(
         'name'                       => 'Agency',
         'singular_name'              => 'Agency',
@@ -137,32 +173,140 @@ function custom_taxonomies() {
     );
 	register_taxonomy('agencies', array('projects'), $args);
 
-	// Project Type
-	$labels = array(
-        'name'              => 'Role',
-        'singular_name'     => 'Role',
-        'search_items'      => 'Search Roles',
-        'all_items'         => 'All Roles',
+// Year
+    $labels = array(
+        'name'              => 'Year',
+        'singular_name'     => 'Year',
+        'search_items'      => 'Search Years',
+        'all_items'         => 'All Years',
         'parent_item'       => null,
         'parent_item_colon' => null,
-        'edit_item'         => 'Edit Role',
-        'update_item'       => 'Update Role',
-        'add_new_item'      => 'Add New Role',
-        'new_item_name'     => 'New Role',
-        'menu_name'         => 'Roles',
+        'edit_item'         => 'Edit Year',
+        'update_item'       => 'Update Year',
+        'add_new_item'      => 'Add New Year',
+        'new_item_name'     => 'New Year',
+        'menu_name'         => 'Year',
     );
 
     $args = array(
-        'hierarchical'          => false,
+         'hierarchical'          => false,
         'labels'                => $labels,
         'show_ui'               => true,
-        'show_admin_column'     => true,
+        'show_admin_column'     => false,
         'update_count_callback' => '_update_post_term_count',
         'query_var'             => true,
-        'rewrite'               => array( 'slug' => 'roles' ),
+        'rewrite'           => array( 'slug' => 'year' ),
     );
-	register_taxonomy('roles', array('projects'), $args);
+    
+    register_taxonomy('year', array('projects', 'features'), $args);
 
+    // Length
+    $labels = array(
+        'name'              => 'Length',
+        'singular_name'     => 'Length',
+        'search_items'      => 'Search Lengths',
+        'all_items'         => 'All Lengths',
+        'parent_item'       => null,
+        'parent_item_colon' => null,
+        'edit_item'         => 'Edit Length',
+        'update_item'       => 'Update Length',
+        'add_new_item'      => 'Add New Length',
+        'new_item_name'     => 'New Length',
+        'menu_name'         => 'Length',
+    );
+
+    $args = array(
+         'hierarchical'          => false,
+        'labels'                => $labels,
+        'show_ui'               => true,
+        'show_admin_column'     => false,
+        'update_count_callback' => '_update_post_term_count',
+        'query_var'             => true,
+        'rewrite'           => array( 'slug' => 'length' ),
+    );
+    
+    register_taxonomy('length', array('features'), $args);
+
+    // Director
+    $labels = array(
+        'name'              => 'Director',
+        'singular_name'     => 'Director',
+        'search_items'      => 'Search Directors',
+        'all_items'         => 'All Directors',
+        'parent_item'       => null,
+        'parent_item_colon' => null,
+        'edit_item'         => 'Edit Director',
+        'update_item'       => 'Update Director',
+        'add_new_item'      => 'Add New Director',
+        'new_item_name'     => 'New Director',
+        'menu_name'         => 'Directors',
+    );
+
+    $args = array(
+         'hierarchical'          => false,
+        'labels'                => $labels,
+        'show_ui'               => true,
+        'show_admin_column'     => false,
+        'update_count_callback' => '_update_post_term_count',
+        'query_var'             => true,
+        'rewrite'           => array( 'slug' => 'director' ),
+    );
+    
+    register_taxonomy('director', array('projects', 'features'), $args);
+
+    // Editor
+    $labels = array(
+        'name'              => 'Editor',
+        'singular_name'     => 'Editor',
+        'search_items'      => 'Search Editors',
+        'all_items'         => 'All Editors',
+        'parent_item'       => null,
+        'parent_item_colon' => null,
+        'edit_item'         => 'Edit Editor',
+        'update_item'       => 'Update Editor',
+        'add_new_item'      => 'Add New Editor',
+        'new_item_name'     => 'New Editor',
+        'menu_name'         => 'Editors',
+    );
+
+    $args = array(
+         'hierarchical'          => false,
+        'labels'                => $labels,
+        'show_ui'               => true,
+        'show_admin_column'     => false,
+        'update_count_callback' => '_update_post_term_count',
+        'query_var'             => true,
+        'rewrite'           => array( 'slug' => 'editors' ),
+    );
+    
+    register_taxonomy('editor', array('projects', 'features'), $args);
+
+    // Studio
+    $labels = array(
+        'name'              => 'Studio',
+        'singular_name'     => 'Studio',
+        'search_items'      => 'Search Studios',
+        'all_items'         => 'All Studios',
+        'parent_item'       => null,
+        'parent_item_colon' => null,
+        'edit_item'         => 'Edit Studio',
+        'update_item'       => 'Update Studio',
+        'add_new_item'      => 'Add New Studio',
+        'new_item_name'     => 'New Studio',
+        'menu_name'         => 'Studios',
+    );
+
+    $args = array(
+         'hierarchical'          => false,
+        'labels'                => $labels,
+        'show_ui'               => true,
+        'show_admin_column'     => false,
+        'update_count_callback' => '_update_post_term_count',
+        'query_var'             => true,
+        'rewrite'           => array( 'slug' => 'studios' ),
+    );
+    
+    register_taxonomy('studis', array('features'), $args);
 }
 
 add_action('init', 'custom_taxonomies');

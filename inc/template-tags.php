@@ -120,3 +120,18 @@ function lance_category_transient_flusher() {
 }
 add_action( 'edit_category', 'lance_category_transient_flusher' );
 add_action( 'save_post',     'lance_category_transient_flusher' );
+
+
+
+if ( ! function_exists( 'lance_paging_nav' ) ) :
+/**
+ * Display navigation to next/previous set of posts when applicable.
+ *
+ * @since Twenty Fourteen 1.0
+ *
+ * @global WP_Query   $wp_query   WordPress Query object.
+ * @global WP_Rewrite $wp_rewrite WordPress Rewrite object.
+ */
+
+endif;
+
