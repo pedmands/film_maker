@@ -1,13 +1,13 @@
 <?php
 /**
-* Plugin Name: Project/Feature Manager
-* Description: A simple plugin to publish projects with the project name, client, agency, and role(s) performed.
+* Plugin Name: Projects & Features Manager
+* Description: Project & Feature post types. Client, agency, studio, director, editor, year, and length taxonomies.
 * Version: 0.1
 * Author: Preston Edmands
 * License: GPL2
 */
 
-/*  Copyright 2015  Preston Edmands  (email : pedmands@gmail.com)
+/*  Copyright 2016  Preston Edmands  (email : pedmands@gmail.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 

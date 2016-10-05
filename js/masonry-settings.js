@@ -10,5 +10,17 @@ $('#projects').masonry({
   isAnimated: true
 });
     
+
+$('.agents').masonry({
+  // options
+  itemSelector: '.agents ul li',
+  columnWidth: '.agents ul li',
+  gutter: 0,
+  isFitWidth: true,
+  isAnimated: true
+});
+
+
+
 });
 

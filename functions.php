@@ -123,6 +123,8 @@ function lance_scripts() {
 
 	wp_enqueue_script( 'lance-custom-script', get_template_directory_uri() . '/js/lancescript.js', array('jQuery'), '20161001', true );
 
+	wp_enqueue_script( 'lance-scroll-script', get_template_directory_uri() . '/js/scrolltotop.js', array('jQuery'), '20161005', true );
+
 	wp_enqueue_script( 'lance-masonry', get_template_directory_uri() . '/js/masonry.min.js', array('jQuery'), '20161002', true );
 
 	wp_enqueue_script( 'lance-masonry-settings', get_template_directory_uri() . '/js/masonry-settings.js', array('jQuery'), '20161002', true );

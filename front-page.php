@@ -25,7 +25,6 @@ get_header(); ?>
 	);
 	$project_tiles = new WP_Query($projects);?>
 
-			
 
 <div id="projects">
 	<?php while ( $project_tiles->have_posts() ) : $project_tiles->the_post();
@@ -35,8 +34,12 @@ get_header(); ?>
 	    the_post_thumbnail('project-thumb');
 	    echo '<div class="project-caption">';
 	    echo '<h1 class="project-title">' . get_the_title() . '</h1>';
-	    echo get_the_term_list($post->ID, 'clients', '<h1 class="project-client">', '</h1><h1 class="project-client">', '</h1>' );
-	    echo get_the_term_list($post->ID, 'year', '<h1 class="project-client">', '</h1><h1 class="project-client">', '</h1>' );
+	    if ( 'projects' == get_post_type()) {
+		    echo get_the_term_list($post->ID, 'clients', '<h1 class="project-client">', '</h1><h1 class="project-client">', '</h1>' );
+	    }
+		else {
+			 echo get_the_term_list($post->ID, 'year', '<h1 class="project-client">', '</h1><h1 class="project-client">', '</h1>' );
+		}
 	    echo '</div>';
 	    echo '</span>';
 	    echo '</a>';
