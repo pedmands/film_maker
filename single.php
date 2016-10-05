@@ -31,28 +31,32 @@ get_header(); ?>
 		</main><!-- #main -->
 
 	</div><!-- #primary -->
-	<div class="post-navigation">
-				<div class="nav-links">
-					<div class="nav-previous">
-					
-						<div class="prev-title">
-						<h5 class="prev-post">Previous:</h5>
-							<?php
-								previous_post_link( '%link', '<span class="b-button">' . $prevThumbnail . '<h4 class="nav-title">' . $prevTitle . '</h4></span>' );
-							?>
-						</div>
-					</div>
-					<div class="nav-next">
-					
-						<div class="next-title">
-						<h5 class="next-post">Next:</h5>
-							<?php
-								next_post_link( '%link', '<span class="b-button">' . $nextThumbnail . '<h4 class="nav-title">' .  $nextTitle . '</h4></span>' );
-							?>
-						</div>
-					</div>
-				</div> <!-- nav-links -->
-			</div> <!-- .post-navigation -->
+	<div class="project-nav">
+	
+		<div class="p-nav">
+			<div class="p-box">
+				<h5 class="p-post">Previous:</h5>
+				<?php
+					previous_post_link( '%link', '<span class="p-button">' . $prevThumbnail . '<h4 class="p-title">' . $prevTitle . '</h4></span>' ); ?>
+			</div> <!-- p-box -->
+		</div> <!-- p-nav -->
+		
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="b-back-to-all">
+				Back To All
+			</a>
+		
+		
+
+		<div class="n-nav">
+			<div class="n-box">
+			<h5 class="n-post">Next:</h5>
+				<?php
+					next_post_link( '%link', '<span class="n-button">' . $nextThumbnail . '<h4 class="n-title">' .  $nextTitle . '</h4></span>' );
+				?>
+			</div>
+		</div>
+			
+			</div> <!-- .project-nav -->
 
 <?php
 get_sidebar();

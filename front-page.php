@@ -35,10 +35,17 @@ get_header(); ?>
 	    echo '<div class="project-caption">';
 	    echo '<h1 class="project-title">' . get_the_title() . '</h1>';
 	    if ( 'projects' == get_post_type()) {
-		    echo get_the_term_list($post->ID, 'clients', '<h1 class="project-client">', '</h1><h1 class="project-client">', '</h1>' );
-	    }
-		else {
-			 echo get_the_term_list($post->ID, 'year', '<h1 class="project-client">', '</h1><h1 class="project-client">', '</h1>' );
+	    	if (has_term('','clients')){
+			    echo get_the_term_list($post->ID, 'clients', '<h1 class="project-client">', '</h1><h1 class="project-client">', '</h1>' );
+			} else {
+				echo get_the_term_list($post->ID, 'director', '<h1 class="project-client">', '</h1><h1 class="project-client">', '</h1>' );
+			}
+	    } else {
+	    	if (has_term('', 'year')){
+				echo get_the_term_list($post->ID, 'year', '<h1 class="project-client">', '</h1><h1 class="project-client">', '</h1>' );
+	    	} else {
+	    		echo get_the_term_list($post->ID, 'director', '<h1 class="project-client">', '</h1><h1 class="project-client">', '</h1>' );
+	    	}
 		}
 	    echo '</div>';
 	    echo '</span>';
