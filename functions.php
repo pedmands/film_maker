@@ -117,7 +117,7 @@ function lance_scripts() {
 
 	wp_enqueue_style('lance-new-styles', get_stylesheet_directory_uri() . '/css/style.css');
 
-	wp_enqueue_style('lance-fontawesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
+	wp_enqueue_style('lance-fontawesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css');
 
 	wp_enqueue_script('jQuery', 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js');
 
